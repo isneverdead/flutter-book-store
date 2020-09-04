@@ -7,6 +7,7 @@ class Book with ChangeNotifier {
   final String prize;
   final String synopsys;
   final int star;
+  final String category;
   Book({
     @required this.key,
     @required this.imageUrl,
@@ -14,5 +15,6 @@ class Book with ChangeNotifier {
     @required this.prize,
     @required this.synopsys,
     @required this.star,
+    @required this.category,
   });
 }

@@ -1,5 +1,8 @@
 import 'package:book_store/pages/login_page.dart';
 import 'package:flutter/material.dart';
+import '../providers/auth.dart';
+import 'package:provider/provider.dart';
+import '../widgets/splash_screen.dart';
 
 class RegisterPage extends StatefulWidget {
   static const routeName = '/register';
@@ -21,6 +24,11 @@ class _RegisterPageState extends State<RegisterPage> {
     final _highDevice = MediaQuery.of(context).size.height;
     var _2highDevice = MediaQuery.of(context).size.height / 2;
     var _4highDevice = MediaQuery.of(context).size.height / 4;
+    // bool _isPasswordHidden = false;
+    final _emailController = TextEditingController();
+    final _passwordController = TextEditingController();
+    final _usernameController = TextEditingController();
+    final auth = Provider.of<Auth>(context);
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColorLight,
       body: Container(
@@ -36,6 +44,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   Container(
                     width: _2highDevice * 0.8,
                     child: TextField(
+                      controller: _usernameController,
                       decoration: InputDecoration(
                         hintText: 'Username',
                         hintStyle: TextStyle(color: Colors.white),
@@ -60,6 +69,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   Container(
                     width: _2highDevice * 0.8,
                     child: TextField(
+                      controller: _emailController,
                       decoration: InputDecoration(
                         hintText: 'Email',
                         hintStyle: TextStyle(color: Colors.white),
@@ -89,6 +99,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         Container(
                           width: _2highDevice * 0.65,
                           child: TextField(
+                            controller: _passwordController,
                             obscureText: _isPasswordHidden,
                             decoration: InputDecoration(
                               hintText: 'Password',
@@ -128,7 +139,14 @@ class _RegisterPageState extends State<RegisterPage> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10)),
                       color: Colors.white,
-                      onPressed: () {},
+                      onPressed: () {
+                        auth.signup(_emailController.text,
+                            _passwordController.text, _usernameController.text);
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (c) => SplashScreen(100)));
+                      },
                       child: Text('Register',
                           style: TextStyle(
                               color: Theme.of(context).primaryColorLight,

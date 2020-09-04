@@ -8,6 +8,7 @@ class ListBook extends StatefulWidget {
   final int star;
   final String synopsys;
   final String prize;
+  final String category;
   ListBook({
     @required this.keys,
     @required this.highDevice,
@@ -16,6 +17,7 @@ class ListBook extends StatefulWidget {
     @required this.star,
     @required this.synopsys,
     @required this.prize,
+    @required this.category,
   });
   @override
   _ListBookState createState() => _ListBookState();

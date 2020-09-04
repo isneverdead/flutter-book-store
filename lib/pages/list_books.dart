@@ -103,25 +103,26 @@ class _ListBooksPageState extends State<ListBooksPage> {
                     onTap: () => Navigator.of(context).pushNamed(
                         BookDetailPage.routeName,
                         arguments: BookDetailPageArgs(
-                            keys: '${book.books.values.toList()[index].key}',
-                            bookName:
-                                '${book.books.values.toList()[index].name}',
-                            imageUrl:
-                                '${book.books.values.toList()[index].imageUrl}',
-                            prize: '${book.books.values.toList()[index].prize}',
-                            stars: book.books.values.toList()[index].star,
-                            synopsys:
-                                '${book.books.values.toList()[index].synopsys}')),
+                          keys: '${book.books.values.toList()[index].key}',
+                          bookName: '${book.books.values.toList()[index].name}',
+                          imageUrl:
+                              '${book.books.values.toList()[index].imageUrl}',
+                          prize: '${book.books.values.toList()[index].prize}',
+                          stars: book.books.values.toList()[index].star,
+                          synopsys:
+                              '${book.books.values.toList()[index].synopsys}',
+                          category: '${book.books.values.toList()[index].key}',
+                        )),
                     child: ListBook(
-                        keys: '${book.books.values.toList()[index].key}',
-                        highDevice: _highDevice,
-                        name: '${book.books.values.toList()[index].name}',
-                        imageUrl:
-                            '${book.books.values.toList()[index].imageUrl}',
-                        star: book.books.values.toList()[index].star,
-                        synopsys:
-                            '${book.books.values.toList()[index].synopsys}',
-                        prize: '${book.books.values.toList()[index].prize}')),
+                      keys: '${book.books.values.toList()[index].key}',
+                      highDevice: _highDevice,
+                      name: '${book.books.values.toList()[index].name}',
+                      imageUrl: '${book.books.values.toList()[index].imageUrl}',
+                      star: book.books.values.toList()[index].star,
+                      synopsys: '${book.books.values.toList()[index].synopsys}',
+                      prize: '${book.books.values.toList()[index].prize}',
+                      category: '${book.books.values.toList()[index].category}',
+                    )),
               ),
             ),
           ],

@@ -36,6 +36,8 @@ class CartPage extends StatelessWidget {
                       onTap: () => Navigator.of(context).pushNamed(
                           BookDetailPage.routeName,
                           arguments: BookDetailPageArgs(
+                              category:
+                                  '${cart.books.values.toList()[index].category}',
                               keys: '${cart.books.values.toList()[index].key}',
                               bookName:
                                   '${cart.books.values.toList()[index].name}',

@@ -7,6 +7,7 @@ class BookDetailPageArgs {
   final int stars;
   final String synopsys;
   final String prize;
+  final String category;
 
   BookDetailPageArgs({
     @required this.keys,
@@ -15,5 +16,6 @@ class BookDetailPageArgs {
     @required this.prize,
     @required this.stars,
     @required this.synopsys,
+    @required this.category,
   });
 }

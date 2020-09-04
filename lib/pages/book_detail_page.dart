@@ -113,12 +113,14 @@ class BookDetailPage extends StatelessWidget {
               cart.addItemToCart(
                   args.keys,
                   Book(
-                      key: args.keys,
-                      imageUrl: args.imageUrl,
-                      name: args.bookName,
-                      prize: args.prize,
-                      synopsys: args.synopsys,
-                      star: args.stars));
+                    key: args.keys,
+                    imageUrl: args.imageUrl,
+                    name: args.bookName,
+                    prize: args.prize,
+                    synopsys: args.synopsys,
+                    star: args.stars,
+                    category: args.category,
+                  ));
               Navigator.of(context).pushNamed(CartPage.routeName);
             },
             child: Card(

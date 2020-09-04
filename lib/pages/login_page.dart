@@ -1,6 +1,8 @@
-import 'package:book_store/pages/home_page.dart';
-import 'package:book_store/pages/register_page.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../providers/auth.dart';
+import '../pages/register_page.dart';
+import '../widgets/splash_screen.dart';
 
 class LoginPage extends StatefulWidget {
   static const routeName = '/login';
@@ -11,6 +13,21 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool _isPasswordHidden = false;
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  bool _initValue = true;
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    if (_initValue) {
+      Provider.of<Auth>(context).tryAutoLogin();
+      setState(() {
+        _initValue = false;
+      });
+    }
+  }
+
   void _showPassword() {
     setState(() {
       _isPasswordHidden = !_isPasswordHidden;
@@ -19,6 +36,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    final auth = Provider.of<Auth>(context);
     final _highDevice = MediaQuery.of(context).size.height;
     var _2highDevice = MediaQuery.of(context).size.height / 2;
     var _4highDevice = MediaQuery.of(context).size.height / 4;
@@ -37,6 +55,7 @@ class _LoginPageState extends State<LoginPage> {
                   Container(
                     width: _2highDevice * 0.8,
                     child: TextField(
+                      controller: _emailController,
                       decoration: InputDecoration(
                         hintText: 'Username',
                         hintStyle: TextStyle(color: Colors.white),
@@ -61,6 +80,7 @@ class _LoginPageState extends State<LoginPage> {
                   Container(
                     width: _2highDevice * 0.8,
                     child: TextField(
+                      controller: _passwordController,
                       obscureText: _isPasswordHidden,
                       decoration: InputDecoration(
                         hintText: 'Password',
@@ -96,7 +116,13 @@ class _LoginPageState extends State<LoginPage> {
                           borderRadius: BorderRadius.circular(10)),
                       color: Colors.white,
                       onPressed: () {
-                        Navigator.of(context).pushNamed(HomePage.routeName);
+                        // Navigator.of(context).pushNamed(HomePage.routeName);
+                        auth.login(
+                            _emailController.text, _passwordController.text);
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (c) => SplashScreen(1500)));
                       },
                       child: Text('Login',
                           style: TextStyle(
